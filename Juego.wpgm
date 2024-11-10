@@ -7,7 +7,7 @@ program pruebas{
     game.addVisualCharacter(katos)
     game.addVisual(llave)
     game.title("katos")
-    game.onCollideDo(llave,game.say(katos,"hola"))
     game.start()
+    game.onCollideDo(llave, game.say(katos,"hola"))
 }
 
