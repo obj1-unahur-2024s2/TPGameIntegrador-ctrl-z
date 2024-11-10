@@ -5,6 +5,7 @@ program pruebas{
     game.height(10)
     game.cellSize(50)
     game.addVisualCharacter(katos)
+    game.addVisual(llave)
     game.title("katos")
     game.start()
 }
