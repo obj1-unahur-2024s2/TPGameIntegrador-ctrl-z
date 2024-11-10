@@ -1,0 +1,11 @@
+import wollok.game.*
+import Jugador.*
+program pruebas{
+    game.width(10)
+    game.height(10)
+    game.cellSize(50)
+    game.addVisualCharacter(katos)
+    game.title("katos")
+    game.start()
+}
+
