@@ -1,21 +1,65 @@
 import wollok.game.*
 import Jugador.*
 import NPC.*
-import Items.*
-program pruebas{
-    game.width(10)
-    game.height(10)
-    game.cellSize(50)
-    game.addVisualCharacter(katos)
-    game.addVisual(llave)
-    game.addVisual(enemigo1)
-    game.addVisual(espada)
-    katos.tocarItem(espada)
-    katos.tocarItem(llave)
-    game.onCollideDo(enemigo1, {katos => katos.pelea(enemigo1)})
-    
-    game.title("katos")
-    game.start()
-    
+import items.*
+
+program pruebas {
+  game.width(10)
+  game.height(10)
+  game.cellSize(50)
+  game.addVisualCharacter(katos)
+  game.addVisual(llave)
+  game.addVisual(enemigo1)
+  game.addVisual(espada)
+  katos.tocarItem(espada)
+  katos.tocarItem(llave)
+  game.onCollideDo(enemigo1, { katos => enemigo1.quitarVida(katos.danio()) })
+  game.onCollideDo(enemigo1, { katos => katos.perderVida(enemigo1.danio()) })
+  game.title("katos")
+  game.start()
 }
 
+object gameManager {
+  method keyConfig() {
+    keyboard.up().onPressDo({ katos.mover(arriba) })
+    keyboard.down().onPressDo({ katos.mover(abajo) })
+    keyboard.left().onPressDo({ katos.mover(izquierda) })
+    keyboard.right().onPressDo({ katos.mover(derecha) })
+  }
+  
+  method cambiarNivel() {
+    
+  }
+  
+  method terminarJuego() {
+    game.stop() //un poco brutal
+  }
+}
+
+class Direccion {
+  method siguiente(position)
+}
+
+object izquierda inherits Direccion {
+  override method siguiente(position) = position.left(1)
+  
+  method opuesto() = derecha
+}
+
+object derecha inherits Direccion {
+  override method siguiente(position) = position.right(1)
+  
+  method opuesto() = izquierda
+}
+
+object abajo inherits Direccion {
+  override method siguiente(position) = position.down(1)
+  
+  method opuesto() = arriba
+}
+
+object arriba inherits Direccion {
+  override method siguiente(position) = position.up(1)
+  
+  method opuesto() = abajo
+}
