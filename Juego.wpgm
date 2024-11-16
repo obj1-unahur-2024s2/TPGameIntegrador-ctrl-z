@@ -6,8 +6,17 @@ program pruebas{
     game.cellSize(50)
     game.addVisualCharacter(katos)
     game.addVisual(llave)
+    game.addVisual(enemigo)
+    game.addVisual(espada)
+    game.onCollideDo(espada, {katos => game.say(katos , "esa")})
+    game.onCollideDo(espada, {katos => katos.agregarAlInventario(espada) katos.tieneArma(espada)})
+    game.onCollideDo(espada, {katos => game.removeVisual(espada)})
     game.title("katos")
+    game.onCollideDo(enemigo, {katos => game.say(katos , "toma")})
+    game.onCollideDo(enemigo, {katos => enemigo.quitarVida(katos.dano())})
+    game.onCollideDo(llave, {katos => game.say(katos , "la tengo cabezon")})
+    game.onCollideDo(llave, {katos => game.removeVisual(llave)})
     game.start()
-    katos.tocar()
-     }
+    
+}
 
