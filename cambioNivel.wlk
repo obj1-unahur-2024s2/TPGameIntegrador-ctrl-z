@@ -4,7 +4,7 @@ import NPC.*
 import Items.*
 
 
-object puerta{
+object puerta {
   method image() = "puertita"
   var property position = game.origin().up(8).right(7) 
   var property puedeAbrir = false

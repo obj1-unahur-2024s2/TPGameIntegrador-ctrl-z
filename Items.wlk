@@ -2,7 +2,7 @@ import wollok.game.*
 
 class Item {
   var property image 
-  var property position =
+  var property position 
 }
 
 object espada inherits Item(image = "espadita", position = game.origin().right(7)) {
