@@ -1,9 +1,8 @@
 import Juego.*
 import wollok.game.*
-
+import Jugador.*
 
 class Item {
-<<<<<<< HEAD
   var property position
   
   method image()
@@ -39,15 +38,3 @@ class Pared inherits Item {
   
   override method pisable() = false
 }
-=======
-  var property image 
-  var property position 
-}
-
-object espada inherits Item(image = "espadita", position = game.origin().right(7)) {
-  var property dano = 10
-}
-
-object llave inherits Item(image = "llave.png", position = game.origin().up(1)) {
-}
->>>>>>> 1c9ddaa5a11209a1a91564c886c55c9cddbf916e

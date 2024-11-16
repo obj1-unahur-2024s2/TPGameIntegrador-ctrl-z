@@ -22,6 +22,10 @@ class Nivel {
     self.inicializarObjetos()
   }
   
+  method cambiarNivel() {
+    objetos.forEach({ o => game.removeVisual(o) })
+  }
+  
   method paredes() {
     //	PAREDES
     const ancho = game.width() - 1
@@ -58,6 +62,12 @@ object nivel1 inherits Nivel (
     objetos.add(new Llave(position = game.at(5, 2)))
     objetos.add(new Salida(position = posicionSalida))
   }
+  
+  override method cambiarNivel() {
+    super()
+    Juego.gameManager.nivel(nivel2)
+    self.start()
+  }
 }
 
 object nivel2 inherits Nivel (
@@ -68,5 +78,11 @@ object nivel2 inherits Nivel (
     super()
     objetos.add(new Llave(position = game.at(5, 2)))
     objetos.add(new Salida(position = posicionSalida))
+  }
+  
+  override method cambiarNivel() {
+    super() //Juego.gameManager.nivel(nivel3)
+    
+    self.start()
   }
 }

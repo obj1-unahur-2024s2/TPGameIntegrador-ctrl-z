@@ -32,32 +32,15 @@ object katos {
     self.agregarAlInventario(unItem)
     self.tieneArma(unItem)
   }
-<<<<<<< HEAD
   
   method tocarItem(unItem) {
     game.onCollideDo(unItem, { katos => katos.agregarYValidarItem(unItem) })
-=======
-
- method tocarItem(unItem){
-  game.onCollideDo(unItem, {katos => katos.agregarYValidarItem(unItem)})
->>>>>>> 1c9ddaa5a11209a1a91564c886c55c9cddbf916e
   }
   
   method recibirDanio(unValor) {
     vida = 0.max(vida - unValor)
     if (vida == 0) Juego.gameManager.terminarJuego()
   }
-<<<<<<< HEAD
   
   method tieneLlave() = inventario.any({ i => i.image() == "llave.png" })
 }
-=======
-
-  method pelea(unEnemigo) {
-    unEnemigo.quitarVida(self.dano())
-    self.perderVida(unEnemigo.dano())
-    
-  } 
-}
-
->>>>>>> 1c9ddaa5a11209a1a91564c886c55c9cddbf916e
