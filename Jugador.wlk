@@ -25,8 +25,8 @@ object katos {
     self.tieneArma(unItem)
   }
 
-  method tocarItem(unItem){
-    game.onCollideDo(unItem, {katos => katos.agregarYValidarItem(unItem)})
+ method tocarItem(unItem){
+  game.onCollideDo(unItem, {katos => katos.agregarYValidarItem(unItem)})
   }
 
   method perderVida(unValor){
@@ -35,4 +35,11 @@ object katos {
       game.removeVisual(self)
     }
   }
+
+  method pelea(unEnemigo) {
+    unEnemigo.quitarVida(self.dano())
+    self.perderVida(unEnemigo.dano())
+    
+  } 
 }
+

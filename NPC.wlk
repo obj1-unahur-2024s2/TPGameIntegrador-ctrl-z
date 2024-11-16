@@ -5,7 +5,7 @@ class Enemigo {
   var property vida = 10
   var property dano = 5
   
-  method image() ="maloso"
+  method image() = "maloso"
 
   method quitarVida(unValor){
     vida -= unValor
@@ -16,5 +16,4 @@ class Enemigo {
 }
 
 object enemigo1 inherits Enemigo() {
- 
 }

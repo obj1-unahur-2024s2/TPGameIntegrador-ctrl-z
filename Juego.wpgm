@@ -12,8 +12,8 @@ program pruebas{
     game.addVisual(espada)
     katos.tocarItem(espada)
     katos.tocarItem(llave)
-    game.onCollideDo(enemigo1, {katos => enemigo1.quitarVida(katos.dano())})
-    game.onCollideDo(enemigo1, {katos => katos.perderVida(enemigo1.dano())})
+    game.onCollideDo(enemigo1, {katos => katos.pelea(enemigo1)})
+    
     game.title("katos")
     game.start()
     
