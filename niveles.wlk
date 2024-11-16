@@ -4,7 +4,7 @@ import Jugador.*
 import items.*
 
 class Nivel {
-  const objetos = [katos]
+  const objetos = [Jugador.katos]
   const posicionInicial
   const posicionSalida
   
@@ -14,7 +14,7 @@ class Nivel {
   }
   
   method instanciarElementos() {
-    katos.position(posicionInicial)
+    Jugador.katos.position(posicionInicial)
   }
   
   method start() {
@@ -58,7 +58,7 @@ object nivel1 inherits Nivel (
 ) {
   override method instanciarElementos() {
     super()
-    objetos.add(espada)
+    objetos.add(items.espada)
     objetos.add(new Llave(position = game.at(5, 2)))
     objetos.add(new Salida(position = posicionSalida))
   }

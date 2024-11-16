@@ -4,17 +4,17 @@ import NPC.*
 import items.*
 import niveles.*
 
-program pruebas {
+program Katos {
   game.width(10)
   game.height(10)
   game.cellSize(50)
-  nivel1.start()
+  gameManager.nivel().start()
   game.title("katos")
   game.start()
 }
 
 object gameManager {
-  var property nivel = nivel1
+  var property nivel = niveles.nivel1
   
   method keyConfig() {
     keyboard.up().onPressDo({ katos.mover(arriba) })
