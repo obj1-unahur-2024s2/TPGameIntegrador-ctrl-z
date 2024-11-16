@@ -1,17 +1,19 @@
 import wollok.game.*
 import Jugador.*
+import NPC.*
+import Items.*
 program pruebas{
     game.width(10)
     game.height(10)
     game.cellSize(50)
     game.addVisualCharacter(katos)
     game.addVisual(llave)
-    game.addVisual(enemigo)
+    game.addVisual(enemigo1)
     game.addVisual(espada)
     katos.tocarItem(espada)
     katos.tocarItem(llave)
-    game.onCollideDo(enemigo, {katos => enemigo.quitarVida(katos.dano())})
-    game.onCollideDo(enemigo, {katos => katos.perderVida(enemigo.dano())})
+    game.onCollideDo(enemigo1, {katos => enemigo1.quitarVida(katos.dano())})
+    game.onCollideDo(enemigo1, {katos => katos.perderVida(enemigo1.dano())})
     game.title("katos")
     game.start()
     
