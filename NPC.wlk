@@ -5,7 +5,7 @@ class Enemigo {
   var property vida = 10
   var property dano = 5
   
-  method image() = "maloso"
+  method image() = "enemigo.png"
 
   method quitarVida(unValor){
     vida -= unValor
