@@ -8,9 +8,8 @@ program Katos {
   game.width(10)
   game.height(10)
   game.cellSize(32)
-  gameManager.nivel().start() // game.addVisual(katos)
-  
-  gameManager.keyConfig()
+  gameManager.nivel().start()
+  console.println("empieza el juego")
   game.title("katos")
   game.start()
 }
@@ -27,6 +26,7 @@ object gameManager {
   
   method cambiarNivel() {
     nivel.cambiarNivel()
+    self.keyConfig()
   }
   
   method terminarJuego() {

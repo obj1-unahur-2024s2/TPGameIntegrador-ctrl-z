@@ -19,12 +19,14 @@ class Nivel {
   }
   
   method start() {
+    Juego.gameManager.keyConfig()
     self.instanciarElementos()
     self.inicializarObjetos()
   }
   
   method cambiarNivel() {
-    objetos.forEach({ o => game.removeVisual(o) })
+    // objetos.forEach({ o => game.removeVisual(o) })
+    game.clear()
   }
   
   method paredes() {
@@ -67,6 +69,7 @@ object nivel1 inherits Nivel (
   override method cambiarNivel() {
     super()
     Juego.gameManager.nivel(nivel2)
+    console.println("nivel 2!")
     self.start()
   }
 }

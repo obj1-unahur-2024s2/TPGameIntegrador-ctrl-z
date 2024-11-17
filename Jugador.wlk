@@ -19,9 +19,9 @@ object katos {
   
   method puedeMoverseA(direccion) = game.getObjectsIn(
     direccion.siguiente(self.position())
-  ).isEmpty() or game.getObjectsIn(
-    direccion.siguiente(self.position())
-  ).pisable()
+  ).isEmpty() or game.getObjectsIn(direccion.siguiente(self.position())).all(
+    { o => o.pisable() }
+  )
   
   method agregarAlInventario(unObjeto) {
     inventario.add(unObjeto)
