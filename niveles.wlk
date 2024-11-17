@@ -10,11 +10,12 @@ class Nivel {
   
   method inicializarObjetos() {
     objetos.forEach({ o => game.addVisual(o) })
-    game.whenCollideDo(katos, { e => e.colision() })
+    game.whenCollideDo(Jugador.katos, { e => e.colision() })
   }
   
   method instanciarElementos() {
     Jugador.katos.position(posicionInicial)
+    self.paredes()
   }
   
   method start() {

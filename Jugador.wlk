@@ -11,11 +11,17 @@ object katos {
   method image() = "katos.png"
   
   method mover(direccion) {
-    if (game.getObjectsIn(direccion.siguiente(self.position())).pisable()) {
+    if (self.puedeMoverseA(direccion)) {
       position = direccion.siguiente(self.position())
       //cambiar imagen a katos_DIRECCION.png
     }
   }
+  
+  method puedeMoverseA(direccion) = game.getObjectsIn(
+    direccion.siguiente(self.position())
+  ).isEmpty() or game.getObjectsIn(
+    direccion.siguiente(self.position())
+  ).pisable()
   
   method agregarAlInventario(unObjeto) {
     inventario.add(unObjeto)

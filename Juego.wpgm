@@ -7,8 +7,10 @@ import niveles.*
 program Katos {
   game.width(10)
   game.height(10)
-  game.cellSize(50)
-  gameManager.nivel().start()
+  game.cellSize(32)
+  gameManager.nivel().start() // game.addVisual(katos)
+  
+  gameManager.keyConfig()
   game.title("katos")
   game.start()
 }
