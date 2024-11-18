@@ -45,6 +45,10 @@ class PocionDeSalud inherits Item{
 
   override method colision() {
     super()
-    katos.curarVida(4)
+    katos.curarVida(5)
   }
+}
+
+class Invisible inherits Item {
+  override method image() = false
 }

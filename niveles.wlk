@@ -11,6 +11,7 @@ class Nivel {
   var property objetos = [Jugador.katos]
   const posicionInicial
   const posicionSalida
+  var property atributos =[] 
   
   method inicializarObjetos() {
     objetos.forEach({ o => game.addVisual(o) })
@@ -33,6 +34,15 @@ class Nivel {
   method clearGame() {
 		game.allVisuals().forEach({ visual => game.removeVisual(visual) })
 	}
+
+  method instanciarAtributos() {
+    atributos.forEach({ visual => game.removeVisual(visual) })
+    atributos = [
+        new DialogoManager(text = "Vida:" + katos.vida().toString(), position = game.at(12, 2)),
+        new DialogoManager(text = "Daño:" + katos.danio().toString(), position = game.at(12, 1))
+    ]
+    atributos.forEach({ visual => game.addVisual(visual) })
+  }
   
   method paredes() {
     //	PAREDES
@@ -67,6 +77,7 @@ object nivel1 inherits Nivel (
 ) {
   override method instanciarElementos() {
     super()
+    objetos.add(new Invisible(position = posicionInicial))
     objetos.add(Items.espada)
     objetos.add(new PocionDeSalud(position = game.at(13, 4)))
     objetos.add(new PocionDeSalud(position = game.at(8, 7)))
@@ -126,6 +137,7 @@ object nivel2 inherits Nivel (
   posicionSalida = game.at(2, 2)
 ) {
   override method instanciarElementos() {
+    objetos.add(new Invisible(position = posicionInicial))
     objetos.add(new Llave(position = game.at(5, 2)))
     objetos.add(new Salida(position = posicionSalida))
     objetos.add(new Basico(position = game.at(4, 9)))
@@ -143,6 +155,7 @@ object nivel0 inherits Nivel (
   posicionSalida = game.at(7, 2)
   ) {
   override method instanciarElementos() {
+    objetos.add(new Invisible(position = posicionInicial))
     objetos.add(new DialogoManager(text = "THE LEGEND OF KATOS",position = game.at(7, 13)))
     objetos.add(new DialogoManager(text = "utiliza las flechas direccionales para moverte
     suerte en tu aventura",position = game.at(7, 10)))
@@ -155,6 +168,44 @@ object nivel0 inherits Nivel (
     self.clearGame()
     prueba.gameManager.nivel(niveles.nivel1)
     console.println("nivel 1!")
+    gameManager.nivel().start()
+  }
+
+  override method paredes() {
+    super()
+    const nuevasParedes = []
+
+    (0 .. 5).forEach(
+      { n => nuevasParedes.add(new Position(x = n, y = 4 )) }
+    )
+
+    (9 .. 15).forEach(
+      { n => nuevasParedes.add(new Position(x = n, y = 4 )) }
+    )
+
+    nuevasParedes.forEach({ pos => objetos.add(new Pared(position = pos)) })
+  }
+}
+
+object nivelF inherits Nivel (
+  posicionInicial = game.at(7,7),
+  posicionSalida = game.at(4, 2)
+  ) {
+  override method instanciarElementos() {
+    objetos.add(new Invisible(position = posicionInicial))
+    objetos.add(new PocionDeSalud(position = game.at(7, 6)))
+    objetos.add(new DialogoManager(text = " Aun no has muerto joven
+    
+    Busca cambiar tu destino",position = game.at(7, 10)))
+    objetos.add(new Llave(position = game.at(7, 3)))
+    objetos.add(new Salida(position = posicionSalida))
+    super()
+  }
+  
+  override method cambiarNivel() {
+    self.clearGame()
+    prueba.gameManager.nivel(niveles.nivel0)
+    console.println("nivel 0!")
     gameManager.nivel().start()
   }
 

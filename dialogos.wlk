@@ -15,4 +15,3 @@ object paleta {
   const property aqua = "00FFFFFF"
 }
 
-

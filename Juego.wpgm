@@ -4,9 +4,10 @@ import NPC.*
 import Items.*
 import niveles.*
 import prueba.*
+import dialogos.*
+
 
 program Katos {
   prueba.puebaGame.inicio()
   game.start()
 }
-

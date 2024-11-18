@@ -14,6 +14,7 @@ object puebaGame {
       console.println("empieza el juego")
       game.title("katos")
       prueba.gameManager.keyConfig()
+      
     }
 }
 
@@ -39,7 +40,10 @@ object gameManager {
   
   method terminarJuego() {
     console.println("has muerto")
-    game.stop() //un poco brutal
+    nivel.clearGame()
+    nivel = niveles.nivelF
+    console.println("nivel F!")
+    nivel.start()
   }
 }
 
