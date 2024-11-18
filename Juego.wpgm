@@ -1,63 +1,12 @@
 import wollok.game.*
 import Jugador.*
 import NPC.*
-import items.*
+import Items.*
 import niveles.*
+import prueba.*
 
 program Katos {
-  game.width(10)
-  game.height(10)
-  game.cellSize(32)
-  gameManager.nivel().start()
-  console.println("empieza el juego")
-  game.title("katos")
+  prueba.puebaGame.inicio()
   game.start()
 }
 
-object gameManager {
-  var property nivel = niveles.nivel1
-  
-  method keyConfig() {
-    keyboard.up().onPressDo({ katos.mover(arriba) })
-    keyboard.down().onPressDo({ katos.mover(abajo) })
-    keyboard.left().onPressDo({ katos.mover(izquierda) })
-    keyboard.right().onPressDo({ katos.mover(derecha) })
-  }
-  
-  method cambiarNivel() {
-    nivel.cambiarNivel()
-    self.keyConfig()
-  }
-  
-  method terminarJuego() {
-    game.stop() //un poco brutal
-  }
-}
-
-class Direccion {
-  method siguiente(position)
-}
-
-object izquierda inherits Direccion {
-  override method siguiente(position) = position.left(1)
-  
-  method opuesto() = derecha
-}
-
-object derecha inherits Direccion {
-  override method siguiente(position) = position.right(1)
-  
-  method opuesto() = izquierda
-}
-
-object abajo inherits Direccion {
-  override method siguiente(position) = position.down(1)
-  
-  method opuesto() = arriba
-}
-
-object arriba inherits Direccion {
-  override method siguiente(position) = position.up(1)
-  
-  method opuesto() = abajo
-}

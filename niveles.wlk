@@ -1,16 +1,18 @@
 import wollok.game.*
-import Juego.*
+import prueba.*
 import Jugador.*
-import items.*
+import Items.*
+import NPC.*
+
 
 class Nivel {
-  const objetos = [Jugador.katos]
+  var property objetos = [Jugador.katos]
   const posicionInicial
   const posicionSalida
   
   method inicializarObjetos() {
     objetos.forEach({ o => game.addVisual(o) })
-    game.whenCollideDo(Jugador.katos, { e => e.colision() })
+    game.onCollideDo(Jugador.katos, { e => e.colision() })
   }
   
   method instanciarElementos() {
@@ -19,15 +21,17 @@ class Nivel {
   }
   
   method start() {
-    Juego.gameManager.keyConfig()
+    prueba.gameManager.keyConfig()
     self.instanciarElementos()
     self.inicializarObjetos()
   }
   
   method cambiarNivel() {
-    // objetos.forEach({ o => game.removeVisual(o) })
-    game.clear()
   }
+
+  method clearGame() {
+		game.allVisuals().forEach({ visual => game.removeVisual(visual) })
+	}
   
   method paredes() {
     //	PAREDES
@@ -57,36 +61,39 @@ class Nivel {
 
 object nivel1 inherits Nivel (
   posicionInicial = game.at(1, 1),
-  posicionSalida = game.at(7, 8)
+  posicionSalida = game.at(7, 11)
 ) {
   override method instanciarElementos() {
     super()
-    objetos.add(items.espada)
+    objetos.add(Items.espada)
     objetos.add(new Llave(position = game.at(5, 2)))
     objetos.add(new Salida(position = posicionSalida))
+    objetos.add(new Basico(position = game.at(5, 9)))
+    objetos.add(new Top(position = game.at(7, 9)))
   }
   
   override method cambiarNivel() {
-    super()
-    Juego.gameManager.nivel(nivel2)
+    self.clearGame()
+    prueba.gameManager.nivel(niveles.nivel2)
     console.println("nivel 2!")
-    self.start()
+    gameManager.nivel().start()
   }
+
+  
 }
 
 object nivel2 inherits Nivel (
-  posicionInicial = game.at(1, 8),
+  posicionInicial = game.at(7, 11),
   posicionSalida = game.at(2, 2)
 ) {
   override method instanciarElementos() {
-    super()
     objetos.add(new Llave(position = game.at(5, 2)))
     objetos.add(new Salida(position = posicionSalida))
+    objetos.add(new Basico(position = game.at(5, 9)))
+    objetos.add(new Top(position = game.at(7, 9)))
+    super()
   }
   
   override method cambiarNivel() {
-    super() //Juego.gameManager.nivel(nivel3)
-    
-    self.start()
   }
 }

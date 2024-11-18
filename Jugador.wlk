@@ -1,10 +1,10 @@
 import wollok.game.*
 import NPC.*
-import items.*
+import Items.*
 
 object katos {
   var property vida = 6
-  var property dano = 5
+  var property danio = 5
   const property inventario = []
   var property position = game.at(7, 6)
   
@@ -30,7 +30,7 @@ object katos {
   
   method tieneArma(unArma) {
     if (inventario.contains(unArma)) {
-      dano += unArma.dano()
+      danio += unArma.danio()
     }
   }
   
@@ -45,8 +45,8 @@ object katos {
   
   method recibirDanio(unValor) {
     vida = 0.max(vida - unValor)
-    if (vida == 0) Juego.gameManager.terminarJuego()
+    if (vida == 0) prueba.gameManager.terminarJuego()
   }
   
-  method tieneLlave() = inventario.any({ i => i.image() == "llave.png" })
+  method tieneLlave() =  inventario.any({ i => i.image() == "llave.png" })
 }

@@ -1,9 +1,10 @@
-import Juego.*
+import prueba.*
 import wollok.game.*
 import Jugador.*
 
 class Item {
   var property position
+  var property danio = 0
   
   method image()
   
@@ -15,9 +16,7 @@ class Item {
   }
 }
 
-object espada inherits Item (position = game.origin().right(7)) {
-  var property danio = 10
-  
+object espada inherits Item (position = game.at(6, 3),danio = 10) {
   override method image() = "espada.png"
 }
 
@@ -29,7 +28,9 @@ class Salida inherits Item {
   override method image() = "puerta.png"
   
   override method colision() {
-    Juego.gameManager.cambiarNivel()
+    if (katos.tieneLlave()){
+      prueba.gameManager.cambiarNivel()
+    }
   }
 }
 

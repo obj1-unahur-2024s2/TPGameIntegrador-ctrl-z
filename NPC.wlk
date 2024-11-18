@@ -6,6 +6,8 @@ class Enemigo {
   var vida
   var danio
   
+  method pisable() = true
+
   method image()
   
   method danio() = danio
@@ -18,14 +20,15 @@ class Enemigo {
   }
   
   method colision() {
-    katos.recibirDanio(danio)
+    self.recibirDanio(katos.danio())
+    katos.recibirDanio(self.danio())
   }
 }
 
 class Basico inherits Enemigo (vida = 5, danio = 1) {
-  override method image() = "maloso.png"
+  override method image() = "enemigo.png"
 }
 
 class Top inherits Enemigo (vida = 10, danio = 3) {
-  override method image() = "capo.png"
+  override method image() = "enemigoFuerte.png"
 }
