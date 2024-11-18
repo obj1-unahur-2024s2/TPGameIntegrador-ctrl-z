@@ -5,7 +5,7 @@ class DialogoManager {
 
   var property textColor = paleta.aqua()
   
-  var property position = posicionDeDialogo.position()
+  var property position 
 }
 object paleta {
   const property green = "00FF00FF"
@@ -15,7 +15,4 @@ object paleta {
   const property aqua = "00FFFFFF"
 }
 
-object posicionDeDialogo {
-  method position() = game.at(2,1)
-} 
 

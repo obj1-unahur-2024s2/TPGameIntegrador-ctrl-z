@@ -47,6 +47,10 @@ object katos {
     vida = 0.max(vida - unValor)
     if (vida == 0) prueba.gameManager.terminarJuego()
   }
+
+  method curarVida(unValor) {
+    vida = vida + unValor
+  }
   
   method tieneLlave() =  inventario.any({ i => i.image() == "llave.png" })
 }

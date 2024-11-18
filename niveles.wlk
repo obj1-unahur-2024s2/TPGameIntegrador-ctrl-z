@@ -3,6 +3,8 @@ import prueba.*
 import Jugador.*
 import Items.*
 import NPC.*
+import dialogos.*
+
 
 
 class Nivel {
@@ -21,7 +23,6 @@ class Nivel {
   }
   
   method start() {
-    prueba.gameManager.keyConfig()
     self.instanciarElementos()
     self.inicializarObjetos()
   }
@@ -39,6 +40,7 @@ class Nivel {
     const largo = game.height() - 1
     
     const posicionesParedes = []
+
     (0 .. ancho).forEach(
       { n => posicionesParedes.add(new Position(x = n, y = 0)) }
     ) // bordeAbajo
@@ -61,15 +63,26 @@ class Nivel {
 
 object nivel1 inherits Nivel (
   posicionInicial = game.at(1, 1),
-  posicionSalida = game.at(7, 11)
+  posicionSalida = game.at(1, 13)
 ) {
   override method instanciarElementos() {
     super()
     objetos.add(Items.espada)
-    objetos.add(new Llave(position = game.at(5, 2)))
+    objetos.add(new PocionDeSalud(position = game.at(13, 4)))
+    objetos.add(new PocionDeSalud(position = game.at(8, 7)))
+    objetos.add(new PocionDeSalud(position = game.at(10, 7)))
+    objetos.add(new PocionDeSalud(position = game.at(1, 12)))
+    objetos.add(new PocionDeSalud(position = game.at(12, 12)))
+    objetos.add(new Llave(position = game.at(13, 13)))
     objetos.add(new Salida(position = posicionSalida))
-    objetos.add(new Basico(position = game.at(5, 9)))
-    objetos.add(new Top(position = game.at(7, 9)))
+    objetos.add(new Basico(position = game.at(11, 4)))
+    objetos.add(new Basico(position = game.at(11, 5)))
+    objetos.add(new Top(position = game.at(12, 13)))
+    objetos.add(new Top(position = game.at(13, 12)))
+    objetos.add(new Top(position = game.at(2, 12)))
+    objetos.add(new Top(position = game.at(2, 13)))
+    objetos.add(new Basico(position = game.at(9, 9)))
+    objetos.add(new Basico(position = game.at(9, 8)))
   }
   
   override method cambiarNivel() {
@@ -79,6 +92,32 @@ object nivel1 inherits Nivel (
     gameManager.nivel().start()
   }
 
+  override method paredes() {
+    super()
+    const nuevasParedes = []
+
+    (0 .. 3).forEach({ n => nuevasParedes.add(new Position(x = n, y = 2 )) })
+    (5 .. 6).forEach({ n => nuevasParedes.add(new Position(x = n, y = 2 )) })
+    (2 .. 6).forEach({ n => nuevasParedes.add(new Position(x = 6, y = n )) })
+    (8 .. 15).forEach({ n => nuevasParedes.add(new Position(x = n, y = 1 )) })
+    (8 .. 15).forEach({ n => nuevasParedes.add(new Position(x = n, y = 2 )) })
+    (8 .. 15).forEach({ n => nuevasParedes.add(new Position(x = n, y = 3 )) })
+    (6 .. 15).forEach({ n => nuevasParedes.add(new Position(x = n, y = 6 )) })
+    (6 .. 7).forEach({ n => nuevasParedes.add(new Position(x = n, y = 7 )) })
+    (6 .. 7).forEach({ n => nuevasParedes.add(new Position(x = n, y = 8 )) })
+    (6 .. 8).forEach({ n => nuevasParedes.add(new Position(x = n, y = 9 )) })
+    (11 .. 15).forEach({ n => nuevasParedes.add(new Position(x = n, y = 7 )) })
+    (11 .. 15).forEach({ n => nuevasParedes.add(new Position(x = n, y = 8 )) })
+    (10 .. 15).forEach({ n => nuevasParedes.add(new Position(x = n, y = 9 )) })
+    (3 .. 12).forEach({ n => nuevasParedes.add(new Position(x = 3, y = n )) })
+    (3 .. 11).forEach({ n => nuevasParedes.add(new Position(x = 2, y = n )) })
+    (3 .. 11).forEach({ n => nuevasParedes.add(new Position(x = 1, y = n )) })
+    (3 .. 11).forEach({ n => nuevasParedes.add(new Position(x = n, y = 12 )) })
+    (3 .. 12).forEach({ n => nuevasParedes.add(new Position(x = n, y = 11 )) })
+    
+
+    nuevasParedes.forEach({ pos => objetos.add(new Pared(position = pos)) })
+  }
   
 }
 
@@ -89,11 +128,48 @@ object nivel2 inherits Nivel (
   override method instanciarElementos() {
     objetos.add(new Llave(position = game.at(5, 2)))
     objetos.add(new Salida(position = posicionSalida))
-    objetos.add(new Basico(position = game.at(5, 9)))
-    objetos.add(new Top(position = game.at(7, 9)))
+    objetos.add(new Basico(position = game.at(4, 9)))
+    objetos.add(new Top(position = game.at(9, 9)))
     super()
   }
   
   override method cambiarNivel() {
+    
+  }
+}
+
+object nivel0 inherits Nivel (
+  posicionInicial = game.at(7,7),
+  posicionSalida = game.at(7, 2)
+  ) {
+  override method instanciarElementos() {
+    objetos.add(new DialogoManager(text = "THE LEGEND OF KATOS",position = game.at(7, 13)))
+    objetos.add(new DialogoManager(text = "utiliza las flechas direccionales para moverte
+    suerte en tu aventura",position = game.at(7, 10)))
+    objetos.add(new Llave(position = game.at(7, 3)))
+    objetos.add(new Salida(position = posicionSalida))
+    super()
+  }
+  
+  override method cambiarNivel() {
+    self.clearGame()
+    prueba.gameManager.nivel(niveles.nivel1)
+    console.println("nivel 1!")
+    gameManager.nivel().start()
+  }
+
+  override method paredes() {
+    super()
+    const nuevasParedes = []
+
+    (0 .. 5).forEach(
+      { n => nuevasParedes.add(new Position(x = n, y = 4 )) }
+    )
+
+    (9 .. 15).forEach(
+      { n => nuevasParedes.add(new Position(x = n, y = 4 )) }
+    )
+
+    nuevasParedes.forEach({ pos => objetos.add(new Pared(position = pos)) })
   }
 }

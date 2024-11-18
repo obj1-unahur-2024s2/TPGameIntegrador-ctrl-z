@@ -13,11 +13,12 @@ object puebaGame {
       gameManager.nivel().start()
       console.println("empieza el juego")
       game.title("katos")
+      prueba.gameManager.keyConfig()
     }
 }
 
 object gameManager {
-  var  nivel = niveles.nivel1
+  var  nivel = niveles.nivel0
 
   method nivel(unNivel) {
     nivel = unNivel
