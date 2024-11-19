@@ -1,4 +1,4 @@
-import Juego.*
+import Config.*
 import wollok.game.*
 import Jugador.*
 
@@ -29,7 +29,7 @@ class Salida inherits Item {
   
   override method colision() {
     console.println(katos.inventario())
-    if (katos.tieneLlave()) Juego.gameManager.cambiarNivel()
+    if (katos.tieneLlave()) Config.gameManager.cambiarNivel()
   }
 }
 

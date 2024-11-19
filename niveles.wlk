@@ -1,5 +1,5 @@
 import wollok.game.*
-import Juego.*
+import Config.*
 import Jugador.*
 import Items.*
 import NPC.*
@@ -97,8 +97,8 @@ object nivel1 inherits Nivel (
   
   override method cambiarNivel() {
     self.clearGame()
-    Juego.gameManager.nivel(niveles.nivel2)
-    Juego.gameManager.nivel().start()
+    Config.gameManager.nivel(niveles.nivel2)
+    Config.gameManager.nivel().start()
   }
 
   override method paredes() {
@@ -169,8 +169,8 @@ object nivel2 inherits Nivel (
   
   override method cambiarNivel() {
     self.clearGame()
-    Juego.gameManager.nivel(niveles.nivelF)
-    Juego.gameManager.nivel().start()
+    Config.gameManager.nivel(niveles.nivelF)
+    Config.gameManager.nivel().start()
   }
 }
 
@@ -190,8 +190,8 @@ object nivel0 inherits Nivel (
   
   override method cambiarNivel() {
     self.clearGame()
-    Juego.gameManager.nivel(niveles.nivel1)
-    Juego.gameManager.nivel().start()
+    Config.gameManager.nivel(niveles.nivel1)
+    Config.gameManager.nivel().start()
   }
 
   override method paredes() {
@@ -227,8 +227,8 @@ object nivelM inherits Nivel (
   
   override method cambiarNivel() {
     self.clearGame()
-    Juego.gameManager.nivel(niveles.nivel0)
-    Juego.gameManager.nivel().start()
+    Config.gameManager.nivel(niveles.nivel0)
+    Config.gameManager.nivel().start()
   }
 
   override method paredes() {
@@ -255,7 +255,7 @@ object nivelF inherits Nivel (
     objetos.add(new Invisible(position = posicionInicial))
     objetos.add(new DialogoManager(text = "THE LEGEND OF KATOS",position = game.at(7, 13)))
     objetos.add(new DialogoManager(text = "Gracias por jugar",position = game.at(7, 10)))
-    objetos.add(new DialogoManager(text = "Tus muertes:" + Juego.gameManager.muertes().toString(),position = game.at(7, 8)))
+    objetos.add(new DialogoManager(text = "Tus muertes:" + Config.gameManager.muertes().toString(),position = game.at(7, 8)))
 
     objetos.add(new Llave(position = game.at(7, 3)))
     objetos.add(new Salida(position = posicionSalida))
