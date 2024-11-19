@@ -20,6 +20,9 @@ object puebaGame {
 
 object gameManager {
   var  nivel = niveles.nivel0
+  var muertes = 0
+
+  method muertes() = muertes
 
   method nivel(unNivel) {
     nivel = unNivel
@@ -39,10 +42,11 @@ object gameManager {
   }
   
   method terminarJuego() {
+    muertes = muertes + 1
     console.println("has muerto")
     nivel.clearGame()
-    nivel = niveles.nivelF
-    console.println("nivel F!")
+    nivel = niveles.nivelM
+    console.println("nivel M!")
     nivel.start()
   }
 }

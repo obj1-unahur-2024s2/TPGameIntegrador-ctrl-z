@@ -11,7 +11,6 @@ object katos {
   var property danio = 5
   const property inventario = []
   var property position = game.at(7, 6)
-  var property nivelActual = gameManager.nivel()
   
   method image() = "katos.png"
   
@@ -64,7 +63,7 @@ object katos {
   }
 
   method actualizarAtributos() {
-    nivelActual.instanciarAtributos()
+    gameManager.nivel().instanciarAtributos()
   }
   
   method tieneLlave() =  inventario.any({ i => i.image() == "llave.png" })
