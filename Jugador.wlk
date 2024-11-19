@@ -3,8 +3,7 @@ import dialogos.*
 import wollok.game.*
 import NPC.*
 import Items.*
-import prueba.*
-
+import Juego.*
 
 object katos {
   var property vida = 6
@@ -51,20 +50,23 @@ object katos {
   method recibirDanio(unValor) {
     vida = 0.max(vida - unValor)
     self.actualizarAtributos()
-    if (vida == 0) {
-      prueba.gameManager.terminarJuego()
-      
-    }
-  }
-
-  method curarVida(unValor) {
-    vida = vida + unValor
-    self.actualizarAtributos()
-  }
-
-  method actualizarAtributos() {
-    gameManager.nivel().instanciarAtributos()
+    if (vida == 0) Juego.gameManager.terminarJuego()
   }
   
-  method tieneLlave() =  inventario.any({ i => i.image() == "llave.png" })
+  method curarVida(unValor) {
+    vida += unValor
+    self.actualizarAtributos()
+  }
+  
+  method actualizarAtributos() {
+    Juego.gameManager.nivel().instanciarAtributos()
+  }
+  
+  method tieneLlave() = inventario.any({ i => i.image() == "llave.png" })
+  
+  method limpiarInventario() {
+    inventario.filter({ i => i.image() != "espada.png" }).forEach(
+      { i => inventario.remove(i) }
+    )
+  }
 }

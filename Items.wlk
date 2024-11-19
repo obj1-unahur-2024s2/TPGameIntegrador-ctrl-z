@@ -1,4 +1,4 @@
-import prueba.*
+import Juego.*
 import wollok.game.*
 import Jugador.*
 
@@ -16,7 +16,7 @@ class Item {
   }
 }
 
-object espada inherits Item (position = game.at(13, 5),danio = 10) {
+object espada inherits Item (position = game.at(13, 5), danio = 10) {
   override method image() = "espada.png"
 }
 
@@ -28,9 +28,8 @@ class Salida inherits Item {
   override method image() = "puerta.png"
   
   override method colision() {
-    if (katos.tieneLlave()){
-      prueba.gameManager.cambiarNivel()
-    }
+    console.println(katos.inventario())
+    if (katos.tieneLlave()) Juego.gameManager.cambiarNivel()
   }
 }
 
@@ -40,9 +39,9 @@ class Pared inherits Item {
   override method pisable() = false
 }
 
-class PocionDeSalud inherits Item{
+class PocionDeSalud inherits Item {
   override method image() = "pocionDeVida.png"
-
+  
   override method colision() {
     super()
     katos.curarVida(5)

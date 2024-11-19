@@ -1,5 +1,5 @@
 import wollok.game.*
-import prueba.*
+import Juego.*
 import Jugador.*
 import Items.*
 import NPC.*
@@ -69,6 +69,15 @@ class Nivel {
     
     posicionesParedes.forEach({ pos => objetos.add(new Pared(position = pos)) })
   }
+  method instanciarPociones(listaPosiciones){
+    listaPosiciones.forEach({pos=> objetos.add(new PocionDeSalud(position = pos))})
+  }
+  method instanciarEnemigosBasicos(listaPosiciones){
+    listaPosiciones.forEach({pos=> objetos.add(new Basico(position = pos))})
+  }
+  method instanciarEnemigosTop(listaPosiciones){
+    listaPosiciones.forEach({pos=> objetos.add(new Top(position = pos))})
+  }
 }
 
 object nivel1 inherits Nivel (
@@ -79,28 +88,17 @@ object nivel1 inherits Nivel (
     super()
     objetos.add(new Invisible(position = posicionInicial))
     objetos.add(Items.espada)
-    objetos.add(new PocionDeSalud(position = game.at(13, 4)))
-    objetos.add(new PocionDeSalud(position = game.at(8, 7)))
-    objetos.add(new PocionDeSalud(position = game.at(10, 7)))
-    objetos.add(new PocionDeSalud(position = game.at(1, 12)))
-    objetos.add(new PocionDeSalud(position = game.at(12, 12)))
     objetos.add(new Llave(position = game.at(13, 13)))
     objetos.add(new Salida(position = posicionSalida))
-    objetos.add(new Basico(position = game.at(11, 4)))
-    objetos.add(new Basico(position = game.at(11, 5)))
-    objetos.add(new Top(position = game.at(12, 13)))
-    objetos.add(new Top(position = game.at(13, 12)))
-    objetos.add(new Top(position = game.at(2, 12)))
-    objetos.add(new Top(position = game.at(2, 13)))
-    objetos.add(new Basico(position = game.at(9, 9)))
-    objetos.add(new Basico(position = game.at(9, 8)))
+    self.instanciarPociones([game.at(13, 4),game.at(8, 7),game.at(10, 7),game.at(1, 12),game.at(12, 12)])
+    self.instanciarEnemigosBasicos([game.at(11, 4),game.at(11, 5),game.at(9, 9),game.at(9, 8)])
+    self.instanciarEnemigosTop([game.at(12, 13),game.at(13, 12),game.at(2, 12),game.at(2, 13)])
   }
   
   override method cambiarNivel() {
     self.clearGame()
-    prueba.gameManager.nivel(niveles.nivel2)
-    console.println("nivel 2!")
-    gameManager.nivel().start()
+    Juego.gameManager.nivel(niveles.nivel2)
+    Juego.gameManager.nivel().start()
   }
 
   override method paredes() {
@@ -138,61 +136,13 @@ object nivel2 inherits Nivel (
 ) {
   override method instanciarElementos() {
     objetos.add(new Invisible(position = posicionInicial))
-    objetos.add(new PocionDeSalud(position = game.at(4, 13)))
-    objetos.add(new PocionDeSalud(position = game.at(4, 3)))
-    objetos.add(new PocionDeSalud(position = game.at(13, 11)))
-    objetos.add(new PocionDeSalud(position = game.at(13, 10)))
-    objetos.add(new PocionDeSalud(position = game.at(12, 11)))
-    objetos.add(new PocionDeSalud(position = game.at(12, 10)))
-    objetos.add(new PocionDeSalud(position = game.at(10, 2)))
-    objetos.add(new PocionDeSalud(position = game.at(9, 5)))
-    objetos.add(new PocionDeSalud(position = game.at(8, 4)))
-    objetos.add(new PocionDeSalud(position = game.at(8, 10)))
     objetos.add(new Llave(position = game.at(9, 11)))
     objetos.add(new Salida(position = posicionSalida))
-    objetos.add(new Basico(position = game.at(4, 9)))
-    objetos.add(new Top(position = game.at(12, 13)))
-    objetos.add(new Top(position = game.at(11, 13)))
-    objetos.add(new Top(position = game.at(10, 13)))
-    objetos.add(new Top(position = game.at(3, 10)))
-    objetos.add(new Top(position = game.at(2, 10)))
-    objetos.add(new Top(position = game.at(1, 10)))
-    objetos.add(new Top(position = game.at(3, 8)))
-    objetos.add(new Top(position = game.at(2, 8)))
-    objetos.add(new Top(position = game.at(1, 8)))
-    objetos.add(new Top(position = game.at(3, 6)))
-    objetos.add(new Top(position = game.at(2, 6)))
-    objetos.add(new Top(position = game.at(1, 6)))
-    objetos.add(new Top(position = game.at(3, 4)))
-    objetos.add(new Top(position = game.at(2, 4)))
-    objetos.add(new Top(position = game.at(1, 4)))
-    objetos.add(new Basico(position = game.at(2, 5)))
-    objetos.add(new Basico(position = game.at(2, 7)))
-    objetos.add(new Basico(position = game.at(2, 9)))
-    objetos.add(new Basico(position = game.at(2, 11)))
-    objetos.add(new Top(position = game.at(13, 8)))
-    objetos.add(new Top(position = game.at(13, 7)))
-    objetos.add(new Basico(position = game.at(13, 5)))
-    objetos.add(new Basico(position = game.at(13, 6)))
-    objetos.add(new Basico(position = game.at(5, 1)))
-    objetos.add(new Basico(position = game.at(6, 1)))
-    objetos.add(new Basico(position = game.at(7, 1)))
-    objetos.add(new Top(position = game.at(9, 3)))
-    objetos.add(new Top(position = game.at(8, 3)))
-    objetos.add(new Top(position = game.at(7, 3)))
-    objetos.add(new Top(position = game.at(8, 4)))
-    objetos.add(new Top(position = game.at(7, 5)))
-    objetos.add(new Top(position = game.at(7, 4)))
-    objetos.add(new Top(position = game.at(9, 9)))
-    objetos.add(new Top(position = game.at(8, 9)))
-    objetos.add(new Top(position = game.at(7, 9)))
-    objetos.add(new Top(position = game.at(7, 11)))
-    objetos.add(new Top(position = game.at(7, 10)))
-    objetos.add(new Top(position = game.at(9, 4)))
-    objetos.add(new Top(position = game.at(8, 5)))
-    objetos.add(new Top(position = game.at(8, 11)))
-    objetos.add(new Top(position = game.at(9, 10)))
-    
+    self.instanciarPociones([game.at(4, 13),game.at(4, 3),game.at(13, 11),game.at(13, 10),game.at(12, 11),game.at(12, 10),game.at(10, 2),game.at(9, 5),game.at(8, 4),game.at(8, 10)])
+    self.instanciarEnemigosBasicos([game.at(2, 5),game.at(2, 7),game.at(2, 9),game.at(2, 11),game.at(13, 5),game.at(13, 6),game.at(5, 1),game.at(6, 1),game.at(7, 1),game.at(4, 9)])
+    self.instanciarEnemigosTop([game.at(12, 13),game.at(11, 13),game.at(10, 13),game.at(3, 10),game.at(2, 10),game.at(1, 10),game.at(3, 8),game.at(2, 8),game.at(1, 8),game.at(3, 6),
+    game.at(2, 6),game.at(1, 6),game.at(3, 4),game.at(2, 4),game.at(1, 4),game.at(13, 8),game.at(13, 7),game.at(9, 3),game.at(8, 3),game.at(7, 3),game.at(8, 4),game.at(7, 5),
+    game.at(7, 4),game.at(9, 9),game.at(8, 9),game.at(7, 9),game.at(7, 11),game.at(7, 10),game.at(9, 4),game.at(8, 5),game.at(8, 11),game.at(9, 10)])
     super()
   }
 
@@ -219,9 +169,8 @@ object nivel2 inherits Nivel (
   
   override method cambiarNivel() {
     self.clearGame()
-    prueba.gameManager.nivel(niveles.nivelF)
-    console.println("nivel F!")
-    gameManager.nivel().start()
+    Juego.gameManager.nivel(niveles.nivelF)
+    Juego.gameManager.nivel().start()
   }
 }
 
@@ -241,9 +190,8 @@ object nivel0 inherits Nivel (
   
   override method cambiarNivel() {
     self.clearGame()
-    prueba.gameManager.nivel(niveles.nivel1)
-    console.println("nivel 1!")
-    gameManager.nivel().start()
+    Juego.gameManager.nivel(niveles.nivel1)
+    Juego.gameManager.nivel().start()
   }
 
   override method paredes() {
@@ -279,9 +227,8 @@ object nivelM inherits Nivel (
   
   override method cambiarNivel() {
     self.clearGame()
-    prueba.gameManager.nivel(niveles.nivel0)
-    console.println("nivel 0!")
-    gameManager.nivel().start()
+    Juego.gameManager.nivel(niveles.nivel0)
+    Juego.gameManager.nivel().start()
   }
 
   override method paredes() {
@@ -308,7 +255,7 @@ object nivelF inherits Nivel (
     objetos.add(new Invisible(position = posicionInicial))
     objetos.add(new DialogoManager(text = "THE LEGEND OF KATOS",position = game.at(7, 13)))
     objetos.add(new DialogoManager(text = "Gracias por jugar",position = game.at(7, 10)))
-    objetos.add(new DialogoManager(text = "Tus muertes:" + gameManager.muertes().toString(),position = game.at(7, 8)))
+    objetos.add(new DialogoManager(text = "Tus muertes:" + Juego.gameManager.muertes().toString(),position = game.at(7, 8)))
 
     objetos.add(new Llave(position = game.at(7, 3)))
     objetos.add(new Salida(position = posicionSalida))

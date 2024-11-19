@@ -1,22 +1,22 @@
-# Nombre del juego (<- borrar y completar)
+# The Legend of Katos
 
 ## Equipo de desarrollo
 
-- Alguien
-- Persona
-- etc.
+- Alabarces Varela, Agustín
+- Mareco, Luciano Nicolás
+- Santos, Matías Nahuel
 
 ## Capturas
 
-(agregar)
+<img src="./assets/titleScreen.png" style="width:100px" />
 
 ## Reglas de Juego / Instrucciones
 
-(Escribirlas)
+Utiliza las flechas direccionales para moverte. Recoge ítems para hacerte más fuerte, vence monstruos y encuentra las llaves para poder escapar con vida!
 
 
 ## Otros
 
-- Curso/Facultad
-- Versión de wollok
-- Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
+- Programación con Objetos 1 - Universidad Nacional de Hurlingham
+- Wollok 0.2.8
+- Una vez terminado, no tenemos problemas en que el repositorio sea público
