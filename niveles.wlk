@@ -11,7 +11,8 @@ class Nivel {
   var property objetos = [Jugador.katos]
   const posicionInicial
   const posicionSalida
-  var property atributos =[] 
+  var property atributos = [] 
+  var property timers = []
   
   method inicializarObjetos() {
     objetos.forEach({ o => game.addVisual(o) })
@@ -27,7 +28,7 @@ class Nivel {
   method start() {
     self.instanciarElementos()
     self.inicializarObjetos()
-    game.onTick(1000,"timer katos",{katos.agregarTiempo()})
+    game.onTick(1000,"timer katos",{self.instanciarTimers()})
   }
   
   
@@ -37,6 +38,15 @@ class Nivel {
   method clearGame() {
 		game.allVisuals().forEach({ visual => game.removeVisual(visual) })
 	}
+
+method instanciarTimers() {
+  katos.agregarTiempo()
+    timers.forEach({ visual => game.removeVisual(visual) })
+    timers = [
+        new DialogoManager(text = "Tiempo :" + katos.timer().toString(), position = game.at(12, 3))
+        ]
+    timers.forEach({ visual => game.addVisual(visual) })
+  }
 
   method instanciarAtributos() {
     atributos.forEach({ visual => game.removeVisual(visual) })
