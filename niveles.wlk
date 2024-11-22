@@ -16,6 +16,7 @@ class Nivel {
   method inicializarObjetos() {
     objetos.forEach({ o => game.addVisual(o) })
     game.onCollideDo(Jugador.katos, { e => e.colision() })
+    
   }
   
   method instanciarElementos() {
@@ -26,7 +27,9 @@ class Nivel {
   method start() {
     self.instanciarElementos()
     self.inicializarObjetos()
+    game.onTick(1000,"timer katos",{katos.agregarTiempo()})
   }
+  
   
   method cambiarNivel() {
   }
@@ -40,7 +43,7 @@ class Nivel {
     atributos = [
         new DialogoManager(text = "Vida:" + katos.vida().toString(), position = game.at(12, 2)),
         new DialogoManager(text = "Daño:" + katos.danio().toString(), position = game.at(12, 1))
-    ]
+      ]
     atributos.forEach({ visual => game.addVisual(visual) })
   }
   

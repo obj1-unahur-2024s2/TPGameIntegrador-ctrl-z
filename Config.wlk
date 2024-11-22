@@ -15,7 +15,6 @@ object gameManager {
     game.cellSize(32)
     game.boardGround("escenario.png")
     self.nivel().start()
-    game.onTick(1000, "tiempo Transcurrido", {katos.agregarTiempo()})
     game.title("katos")
     self.keyConfig()
   }

@@ -64,7 +64,7 @@ object katos {
   }
   
   method actualizarAtributos() {
-    Config.gameManager.nivel().instanciarAtributos()
+   Config.gameManager.nivel().instanciarAtributos()
   }
   
   method tieneLlave() = inventario.any({ i => i.image() == "llave.png" })
