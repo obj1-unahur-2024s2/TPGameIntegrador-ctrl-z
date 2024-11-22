@@ -255,8 +255,8 @@ object nivelF inherits Nivel (
     objetos.add(new Invisible(position = posicionInicial))
     objetos.add(new DialogoManager(text = "THE LEGEND OF KATOS",position = game.at(7, 13)))
     objetos.add(new DialogoManager(text = "Gracias por jugar",position = game.at(7, 10)))
-    objetos.add(new DialogoManager(text = "Tus muertes:" + Config.gameManager.muertes().toString(),position = game.at(7, 8)))
-
+    objetos.add(new DialogoManager(text = "Tus muertes: " + Config.gameManager.muertes().toString(),position = game.at(7, 8)))
+    objetos.add(new DialogoManager(text = "Tiempo de compleción: " + katos.timer().toString(),position = game.at(7, 7)))
     objetos.add(new Llave(position = game.at(7, 3)))
     objetos.add(new Salida(position = posicionSalida))
     super()

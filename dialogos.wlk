@@ -1,4 +1,6 @@
 import wollok.game.*
+import Jugador.*
+import Items.*
 
 class DialogoManager {
   var property text = String
@@ -6,6 +8,10 @@ class DialogoManager {
   var property textColor = paleta.aqua()
   
   var property position 
+
+  method pisable() = true
+  
+ 
 }
 object paleta {
   const property green = "00FF00FF"

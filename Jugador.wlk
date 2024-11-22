@@ -10,9 +10,14 @@ object katos {
   var property danio = 5
   const property inventario = []
   var property position = game.at(7, 6)
+  var timer = 0
   
+  method agregarTiempo(){
+    timer += 1
+  }
+  method timer() = timer
   method image() = "katos.png"
-  
+
   method mover(direccion) {
     if (self.puedeMoverseA(direccion)) {
       position = direccion.siguiente(self.position())

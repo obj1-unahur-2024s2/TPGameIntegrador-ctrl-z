@@ -9,6 +9,8 @@ class Item {
   method image()
   
   method pisable() = true
+
+  method esItem() = true
   
   method colision() {
     katos.agregarYValidarItem(self)

@@ -8,13 +8,14 @@ import dialogos.*
 object gameManager {
   var nivel = niveles.nivel0
   var muertes = 0
-  
+ 
   method startGame() {
     game.width(15)
     game.height(15)
     game.cellSize(32)
     game.boardGround("escenario.png")
     self.nivel().start()
+    game.onTick(1000, "tiempo Transcurrido", {katos.agregarTiempo()})
     game.title("katos")
     self.keyConfig()
   }
