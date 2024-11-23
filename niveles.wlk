@@ -37,11 +37,13 @@ class Nivel {
 
   method clearGame() {
 		game.allVisuals().forEach({ visual => game.removeVisual(visual) })
+    game.removeTickEvent("timer katos")
 	}
 
 method instanciarTimers() {
   katos.agregarTiempo()
-    timers.forEach({ visual => game.removeVisual(visual) })
+  console.println(katos.timer().toString())
+    // timers.forEach({ visual => game.removeVisual(visual) })
     timers = [
         new DialogoManager(text = "Tiempo :" + katos.timer().toString(), position = game.at(12, 3))
         ]
